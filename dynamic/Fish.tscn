@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://30mc50162vtb"]
+
+[ext_resource type="Script" path="res://dynamic/fish.gd" id="1_ji4fx"]
+[ext_resource type="Texture2D" uid="uid://cu68ybp1h72g7" path="res://assets/fish_1.png" id="1_q17uj"]
+[ext_resource type="Script" path="res://dynamic/fish_body.gd" id="2_33jqy"]
+[ext_resource type="Texture2D" uid="uid://coudxes3pnyt" path="res://assets/fish_2.png" id="2_pp73e"]
+
+[sub_resource type="Curve2D" id="Curve2D_bqnin"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f5t0r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_q17uj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pp73e")
+}],
+"loop": true,
+"name": &"flop",
+"speed": 5.0
+}]
+
+[node name="Fish" type="Node" groups=["fish_all"]]
+script = ExtResource("1_ji4fx")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_bqnin")
+script = ExtResource("1_ji4fx")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+loop = false
+
+[node name="FishBody" type="Area2D" parent="Path2D/PathFollow2D"]
+script = ExtResource("2_33jqy")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Path2D/PathFollow2D/FishBody"]
+scale = Vector2(0.66, 0.66)
+polygon = PackedVector2Array(-35, -8, -29, -20, -3, -27, 20, -25, 38, -22, 43, -5, 24, 16, 14, 21, -11, 26, -31, 22, -38, 12)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow2D/FishBody"]
+scale = Vector2(0.025, 0.025)
+sprite_frames = SubResource("SpriteFrames_f5t0r")
+animation = &"flop"
+frame = 1
+frame_progress = 0.870637
+
+[connection signal="body_entered" from="Path2D/PathFollow2D/FishBody" to="." method="_on_fish_body_body_entered"]
+[connection signal="body_entered" from="Path2D/PathFollow2D/FishBody" to="." method="_on_fish_body_entered"]

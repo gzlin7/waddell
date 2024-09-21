@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3vcuypnu4oac"]
+
+[ext_resource type="Script" path="res://environment/placement.gd" id="1_jbhye"]
+[ext_resource type="PackedScene" uid="uid://dsaha7epmt5wu" path="res://environment/objects/hole.tscn" id="2_41st3"]
+
+[node name="placement" type="Node"]
+script = ExtResource("1_jbhye")
+hole_scene = ExtResource("2_41st3")
+
+[node name="holes" type="Line2D" parent="."]
+position = Vector2(40.2595, 54.0507)
+scale = Vector2(0.909669, 0.886076)
+points = PackedVector2Array(141.524, 346.414, 692.274, 107.157, 940.716, 232.429, 760.431, 707.557, 267.944, 661.286)
+width = 1.0
+
+[node name="walruses" type="Line2D" parent="."]
+points = PackedVector2Array(130, 80, 975, 489, 613, 791, 378, 503)
+width = 1.0
+default_color = Color(1, 0.372549, 1, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+color = Color(0.85098, 0.937255, 1, 1)
+invert_enabled = true
+polygon = PackedVector2Array(45, 92, 95, 38, 205, 28, 477, 38, 533, 58, 589, 56, 643, 38, 769, 26, 897, 38, 965, 68, 1025, 110, 1055, 150, 1051, 260, 1067, 314, 1039, 350, 1025, 392, 1053, 440, 1067, 524, 1063, 630, 1049, 676, 1039, 746, 981, 756, 861, 740, 785, 772, 631, 762, 563, 734, 479, 732, 439, 750, 391, 720, 347, 754, 291, 758, 193, 726, 125, 742, 87, 770, 37, 744, 43, 658, 59, 572, 41, 506, 73, 396, 65, 314, 39, 262, 39, 192)

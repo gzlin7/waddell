@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://cuqhhdp1y2f7r"]
+
+[ext_resource type="Script" path="res://dynamic/player.gd" id="1_6owum"]
+[ext_resource type="Texture2D" uid="uid://bg8y3ieiervg" path="res://assets/waddell_center.png" id="1_hc7l8"]
+[ext_resource type="Texture2D" uid="uid://smywfbm3d53j" path="res://assets/waddell_left.png" id="2_2x8og"]
+[ext_resource type="Texture2D" uid="uid://b24irs6t3wywk" path="res://assets/waddell_right.png" id="3_xxxqp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eccyc"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("1_hc7l8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2x8og")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_hc7l8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xxxqp")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_klusp"]
+radius = 443.985
+height = 973.195
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.08, 0.08)
+script = ExtResource("1_6owum")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = -1.73661
+sprite_frames = SubResource("SpriteFrames_eccyc")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(50, -20)
+rotation = 0.155334
+shape = SubResource("CapsuleShape2D_klusp")
+
+[node name="BounceTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true

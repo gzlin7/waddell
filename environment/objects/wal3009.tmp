@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx0l6yteailud"]
+
+[ext_resource type="Script" path="res://environment/objects/walrus.gd" id="1_2qlkc"]
+[ext_resource type="Texture2D" uid="uid://dpv8b1rhxvsay" path="res://assets/walrus_nap.png" id="1_vvkjv"]
+[ext_resource type="Texture2D" uid="uid://cxfhgvyn3wclp" path="res://assets/walrus_wake.png" id="2_cplrd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ihard"]
+radius = 33.5261
+height = 75.8823
+
+[node name="Walrus" type="RigidBody2D"]
+gravity_scale = 0.0
+can_sleep = false
+freeze = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_2qlkc")
+
+[node name="AwakeSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("2_cplrd")
+
+[node name="SleepSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("1_vvkjv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+rotation = 0.303687
+shape = SubResource("CapsuleShape2D_ihard")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
